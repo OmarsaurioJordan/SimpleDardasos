@@ -1,0 +1,5 @@
+for(i=0;i<condicionador.ambulancias;i+=1){
+    aux=instance_find(ambulanciazul,i);
+    if(point_distance(aux.x,aux.y,argument0.x,argument0.y)<visualizacion and
+    !collision_line(argument0.x,argument0.y,aux.x,aux.y,bloque,altocol,1)){
+        argument0.mente=aux; break;}}

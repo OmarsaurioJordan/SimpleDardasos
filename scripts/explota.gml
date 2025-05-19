@@ -1,0 +1,22 @@
+//id de quien llama, destruir id de quien llama
+for(i=0;i<360;i+=45){
+    xx=argument0.x+lengthdir_x(mele/2,argument0.direction+i);
+    yy=argument0.y+lengthdir_y(mele/2,argument0.direction+i);
+    if(argument0.object_index=proyectil1){
+        tiro=instance_create(xx,yy,proyectil1);
+        if(argument0.mio!=0){
+            tiro.mio=argument0.mio;}}
+    else{
+        tiro=instance_create(xx,yy,proyectil2);}
+    tiro.direction=argument0.direction+i;
+    tiro.tipo=7;
+    tiro.rapides=25;
+    tiro.duracion=5;}
+if(argument0.object_index=proyectil1){
+    llamandolos(argument0.x,argument0.y,argument0.direction+180,enemigo);}
+else{
+    llamandolos(argument0.x,argument0.y,argument0.direction+180,guardian);}
+audio_play_sound_at(s_impac_bomba,argument0.x,argument0.y,0,visualizacion*0.1,visualizacion*1.5,1,0,2);
+if(argument1=1){
+    with(argument0){
+        instance_destroy();}}

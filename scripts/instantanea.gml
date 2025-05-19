@@ -1,0 +1,224 @@
+validandolo(argument0);
+if(argument0="map_omwa.ini"){
+    ini_open("map_omwa.ini");}
+else{
+    ini_open("omwam_"+argument0+".ini");}
+xx=real(ini_read_string("config","ancho","357"))*escala;
+yy=real(ini_read_string("config","alto","279"))*escala;
+cc=make_colour_rgb(233,249,196);
+lienzo=surface_create(xx,yy);
+surface_set_target(lienzo);
+draw_rectangle_colour(0,0,xx,yy,cc,cc,cc,cc,0);
+cc=0.06;
+if(ini_section_exists("adorno")){
+    i=0;
+    do{
+        if(ini_key_exists("adorno","x"+string(i))){
+            draw_sprite_ext(d_2d,5,real(ini_read_string("adorno","x"+string(i),"0"))*escala,
+            real(ini_read_string("adorno","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("cultivo")){
+    i=0;
+    do{
+        if(ini_key_exists("cultivo","x"+string(i))){
+            draw_sprite_ext(d_2d,6,real(ini_read_string("cultivo","x"+string(i),"0"))*escala,
+            real(ini_read_string("cultivo","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("viducha")){
+    i=0;
+    do{
+        if(ini_key_exists("viducha","x"+string(i))){
+            draw_sprite_ext(d_2d,17,real(ini_read_string("viducha","x"+string(i),"0"))*escala,
+            real(ini_read_string("viducha","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("objeto")){
+    i=0;
+    do{
+        if(ini_key_exists("objeto","x"+string(i))){
+            draw_sprite_ext(d_2d,16,real(ini_read_string("objeto","x"+string(i),"0"))*escala,
+            real(ini_read_string("objeto","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("checkpoint")){
+    i=0;
+    do{
+        if(ini_key_exists("checkpoint","x"+string(i))){
+            draw_sprite_ext(d_2d,18,real(ini_read_string("checkpoint","x"+string(i),"0"))*escala,
+            real(ini_read_string("checkpoint","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("creaenemigos")){
+    i=0;
+    do{
+        if(ini_key_exists("creaenemigos","x"+string(i))){
+            draw_sprite_ext(d_2d,19,real(ini_read_string("creaenemigos","x"+string(i),"0"))*escala,
+            real(ini_read_string("creaenemigos","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("creaguardianes")){
+    i=0;
+    do{
+        if(ini_key_exists("creaguardianes","x"+string(i))){
+            draw_sprite_ext(d_2d,20,real(ini_read_string("creaguardianes","x"+string(i),"0"))*escala,
+            real(ini_read_string("creaguardianes","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("creamuniciones")){
+    i=0;
+    do{
+        if(ini_key_exists("creamuniciones","x"+string(i))){
+            draw_sprite_ext(d_2d,21,real(ini_read_string("creamuniciones","x"+string(i),"0"))*escala,
+            real(ini_read_string("creamuniciones","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("creavidas")){
+    i=0;
+    do{
+        if(ini_key_exists("creavidas","x"+string(i))){
+            draw_sprite_ext(d_2d,22,real(ini_read_string("creavidas","x"+string(i),"0"))*escala,
+            real(ini_read_string("creavidas","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(real(ini_read_string("config","puertax","-150"))!=-150){
+    draw_sprite_ext(d_2d,15,real(ini_read_string("config","puertax","0"))*escala,
+    real(ini_read_string("config","puertay","0"))*escala,escala,escala,0,c_white,1);}
+if(ini_section_exists("muro1")){
+    i=0;
+    do{
+        if(ini_key_exists("muro1","x"+string(i))){
+            draw_sprite_ext(d_2d,0,real(ini_read_string("muro1","x"+string(i),"0"))*escala,
+            real(ini_read_string("muro1","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("muro2")){
+    i=0;
+    do{
+        if(ini_key_exists("muro2","x"+string(i))){
+            draw_sprite_ext(d_2d,1,real(ini_read_string("muro2","x"+string(i),"0"))*escala,
+            real(ini_read_string("muro2","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("muro3")){
+    i=0;
+    do{
+        if(ini_key_exists("muro3","x"+string(i))){
+            draw_sprite_ext(d_2d,2,real(ini_read_string("muro3","x"+string(i),"0"))*escala,
+            real(ini_read_string("muro3","y"+string(i),"0"))*escala,escala,escala,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("casa")){
+    i=0;
+    do{
+        if(ini_key_exists("casa","x"+string(i))){
+            aux=real(ini_read_string("casa","t"+string(i),"0"));
+            switch(aux){
+            case 1:
+                draw_sprite_ext(d_2d,12,real(ini_read_string("casa","x"+string(i),"0"))*escala,
+                real(ini_read_string("casa","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1); break;
+            case 2:
+                draw_sprite_ext(d_2d,13,real(ini_read_string("casa","x"+string(i),"0"))*escala,
+                real(ini_read_string("casa","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1); break;
+            case 3:
+                draw_sprite_ext(d_2d,14,real(ini_read_string("casa","x"+string(i),"0"))*escala,
+                real(ini_read_string("casa","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1); break;
+            default:
+                draw_sprite_ext(d_2d,3,real(ini_read_string("casa","x"+string(i),"0"))*escala,
+                real(ini_read_string("casa","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1); break;}
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("natural")){
+    i=0;
+    do{
+        if(ini_key_exists("natural","x"+string(i))){
+            draw_sprite_ext(d_2d,4,real(ini_read_string("natural","x"+string(i),"0"))*escala,
+            real(ini_read_string("natural","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("enemigo")){
+    i=0;
+    do{
+        if(ini_key_exists("enemigo","x"+string(i))){
+            draw_sprite_ext(d_2d,8,real(ini_read_string("enemigo","x"+string(i),"0"))*escala,
+            real(ini_read_string("enemigo","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("guardian")){
+    i=0;
+    do{
+        if(ini_key_exists("guardian","x"+string(i))){
+            draw_sprite_ext(d_2d,9,real(ini_read_string("guardian","x"+string(i),"0"))*escala,
+            real(ini_read_string("guardian","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("campesino")){
+    i=0;
+    do{
+        if(ini_key_exists("campesino","x"+string(i))){
+            draw_sprite_ext(d_2d,10,real(ini_read_string("campesino","x"+string(i),"0"))*escala,
+            real(ini_read_string("campesino","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("capturado")){
+    i=0;
+    do{
+        if(ini_key_exists("capturado","x"+string(i))){
+            draw_sprite_ext(d_2d,11,real(ini_read_string("capturado","x"+string(i),"0"))*escala,
+            real(ini_read_string("capturado","y"+string(i),"0"))*escala,escala+cc,escala+cc,0,c_white,1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("player")){
+    draw_sprite_ext(d_2d,7,real(ini_read_string("player","x","0"))*escala,
+    real(ini_read_string("player","y","0"))*escala,escala+cc,escala+cc,0,c_white,1);}
+ini_close();
+foto=sprite_create_from_surface(lienzo,20*escala,120*escala,xx-40*escala,yy-140*escala,false,false,0,0);
+surface_reset_target();
+if(argument2=1){//no windows
+    cc=0;
+    do{
+        cc+=1;}
+    until(!file_exists("omwam_"+argument0+string(cc)+".png"));
+    sprite_save(foto,0,"omwam_"+argument0+string(cc)+".png");}
+else{
+    sprite_save(foto,0,argument1);}
+surface_free(lienzo);
+sprite_delete(foto);
+audio_play_sound(s_guardar,8,0);

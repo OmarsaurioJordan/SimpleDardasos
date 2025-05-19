@@ -1,0 +1,261 @@
+validandolo(argument0);
+if(argument0="map_omwa.ini"){
+    ini_open("map_omwa.ini");}
+else{
+    ini_open("omwam_"+argument0+".ini");}
+condicionador.x=real(ini_read_string("config","puertax","0"));
+condicionador.y=real(ini_read_string("config","puertay","0"));
+condicionador.tiempo=real(ini_read_string("config","tiempo","0"));
+if(condicionador.tiempo>0){condicionador.suave=1;}
+condicionador.cazados=real(ini_read_string("config","cazados","0"));
+condicionador.renovaenemigos=real(ini_read_string("config","renovaenemigos","1"));
+condicionador.renovaguardianes=real(ini_read_string("config","renovaguardianes","1"));
+condicionador.densidadenemigos=real(ini_read_string("config","densidadenemigos","0"));
+condicionador.densidadguardianes=real(ini_read_string("config","densidadguardianes","0"));
+condicionador.relojenemigos=real(ini_read_string("config","relojenemigos","0"));
+if(condicionador.relojenemigos>0){condicionador.reloj1=0;}
+condicionador.relojguardianes=real(ini_read_string("config","relojguardianes","0"));
+if(condicionador.relojguardianes>0){condicionador.reloj2=0;}
+condicionador.rescatenemigos=real(ini_read_string("config","rescatenemigos","0"));
+condicionador.rescateguardianes=real(ini_read_string("config","rescateguardianes","0"));
+condicionador.relojmunicion=real(ini_read_string("config","relojmunicion","0"));
+if(condicionador.relojmunicion>0){condicionador.reloj3=0;}
+condicionador.relojvidas=real(ini_read_string("config","relojvidas","0"));
+if(condicionador.relojvidas>0){condicionador.reloj4=0;}
+condicionador.vidas=real(ini_read_string("config","vidas","1"));
+condicionador.municionplayer=real(ini_read_string("config","municionplayer","-1"));
+if(ini_section_exists("natural")){
+    i=0;
+    do{
+        if(ini_key_exists("natural","x"+string(i))){
+            instance_create(real(ini_read_string("natural","x"+string(i),"0")),real(ini_read_string("natural","y"+string(i),"0")),natural);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("casa")){
+    i=0;
+    do{
+        if(ini_key_exists("casa","x"+string(i))){
+            aux=real(ini_read_string("casa","t"+string(i),"0"));
+            switch(aux){
+            case 1:
+                instance_create(real(ini_read_string("casa","x"+string(i),"0")),real(ini_read_string("casa","y"+string(i),"0")),baseroja); break;
+            case 2:
+                instance_create(real(ini_read_string("casa","x"+string(i),"0")),real(ini_read_string("casa","y"+string(i),"0")),baseazul); break;
+            case 3:
+                instance_create(real(ini_read_string("casa","x"+string(i),"0")),real(ini_read_string("casa","y"+string(i),"0")),basecontrol); break;
+            default:
+                instance_create(real(ini_read_string("casa","x"+string(i),"0")),real(ini_read_string("casa","y"+string(i),"0")),casa); break;}
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("muro1")){
+    i=0;
+    do{
+        if(ini_key_exists("muro1","x"+string(i))){
+            instance_create(real(ini_read_string("muro1","x"+string(i),"0")),real(ini_read_string("muro1","y"+string(i),"0")),muro1);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("muro2")){
+    i=0;
+    do{
+        if(ini_key_exists("muro2","x"+string(i))){
+            instance_create(real(ini_read_string("muro2","x"+string(i),"0")),real(ini_read_string("muro2","y"+string(i),"0")),muro2);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("muro3")){
+    i=0;
+    do{
+        if(ini_key_exists("muro3","x"+string(i))){
+            instance_create(real(ini_read_string("muro3","x"+string(i),"0")),real(ini_read_string("muro3","y"+string(i),"0")),muro3);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("adorno")){
+    i=0;
+    do{
+        if(ini_key_exists("adorno","x"+string(i))){
+            instance_create(real(ini_read_string("adorno","x"+string(i),"0")),real(ini_read_string("adorno","y"+string(i),"0")),adorno);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("cultivo")){
+    i=0;
+    do{
+        if(ini_key_exists("cultivo","x"+string(i))){
+            instance_create(real(ini_read_string("cultivo","x"+string(i),"0")),real(ini_read_string("cultivo","y"+string(i),"0")),cultivo);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("player")){
+    aux=instance_create(real(ini_read_string("player","x","0")),real(ini_read_string("player","y","0")),paracaidista);
+    aux.clase=-1;
+    aux.arma=condicionador.municionplayer;
+    condicionador.inicialx=aux.x;
+    condicionador.inicialy=aux.y;
+    view_xview[0]=aux.x-view_wview[0]/2;
+    view_yview[0]=aux.y-64-view_hview[0]/2;
+    view_object[0]=aux;
+    aux=instance_create(condicionador.inicialx,condicionador.inicialy,checkpoint);
+    aux.activo=1;}
+else{
+    instance_create(room_width/2,room_height/2,comanche);}
+if(ini_section_exists("enemigo")){
+    i=0;
+    do{
+        if(ini_key_exists("enemigo","x"+string(i))){
+            instance_create(real(ini_read_string("enemigo","x"+string(i),"0")),real(ini_read_string("enemigo","y"+string(i),"0")),enemigo);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("guardian")){
+    i=0;
+    do{
+        if(ini_key_exists("guardian","x"+string(i))){
+            instance_create(real(ini_read_string("guardian","x"+string(i),"0")),real(ini_read_string("guardian","y"+string(i),"0")),guardian);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("campesino")){
+    i=0;
+    do{
+        if(ini_key_exists("campesino","x"+string(i))){
+            instance_create(real(ini_read_string("campesino","x"+string(i),"0")),real(ini_read_string("campesino","y"+string(i),"0")),campesino);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("capturado")){
+    i=0;
+    do{
+        if(ini_key_exists("capturado","x"+string(i))){
+            instance_create(real(ini_read_string("capturado","x"+string(i),"0")),real(ini_read_string("capturado","y"+string(i),"0")),capturado);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("creaenemigos")){
+    i=0;
+    do{
+        if(ini_key_exists("creaenemigos","x"+string(i))){
+            aux=instance_create(real(ini_read_string("creaenemigos","x"+string(i),"0")),real(ini_read_string("creaenemigos","y"+string(i),"0")),creaenemigos);
+            aux.area=real(ini_read_string("creaenemigos","a"+string(i),"1"));
+            aux.arma=real(ini_read_string("creaenemigos","t"+string(i),"0"));
+            if(aux.arma>-1){
+                condicionador.huidaenemigos=1;}
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);
+    for(i=0;i<instance_number(creaenemigos);i+=1){
+        with(instance_find(creaenemigos,i)){
+            if(area=-1){
+                x=0; y=0;}}}}
+if(ini_section_exists("creaguardianes")){
+    i=0;
+    do{
+        if(ini_key_exists("creaguardianes","x"+string(i))){
+            aux=instance_create(real(ini_read_string("creaguardianes","x"+string(i),"0")),real(ini_read_string("creaguardianes","y"+string(i),"0")),creaguardianes);
+            aux.area=real(ini_read_string("creaguardianes","a"+string(i),"1"));
+            aux.arma=real(ini_read_string("creaguardianes","t"+string(i),"0"));
+            if(aux.arma>-1){
+                condicionador.huidaguardianes=1;}
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);
+    for(i=0;i<instance_number(creaguardianes);i+=1){
+        with(instance_find(creaguardianes,i)){
+            if(area=-1){
+                x=0; y=0;}}}}
+if(ini_section_exists("creamuniciones")){
+    i=0;
+    do{
+        if(ini_key_exists("creamuniciones","x"+string(i))){
+            aux=instance_create(real(ini_read_string("creamuniciones","x"+string(i),"0")),real(ini_read_string("creamuniciones","y"+string(i),"0")),creamuniciones);
+            aux.area=real(ini_read_string("creamuniciones","a"+string(i),"1"));
+            aux.arma=real(ini_read_string("creamuniciones","t"+string(i),"0"));
+            if(aux.area=0){
+                otrocoso=instance_create(aux.x,aux.y,provisiones);
+                otrocoso.clase=0; otrocoso.municion=aux.arma; otrocoso.fijo=1;}
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);
+    for(i=0;i<instance_number(creamuniciones);i+=1){
+        with(instance_find(creamuniciones,i)){
+            if(area=-1){
+                x=0; y=0;}}}}
+if(ini_section_exists("creavidas")){
+    i=0;
+    do{
+        if(ini_key_exists("creavidas","x"+string(i))){
+            aux=instance_create(real(ini_read_string("creavidas","x"+string(i),"0")),real(ini_read_string("creavidas","y"+string(i),"0")),creavidas);
+            aux.area=real(ini_read_string("creavidas","a"+string(i),"1"));
+            aux.tipo=real(ini_read_string("creavidas","t"+string(i),"0"));
+            if(aux.area=0){
+                otrocoso=instance_create(aux.x,aux.y,provisiones);
+                otrocoso.clase=1; otrocoso.municion=aux.tipo;}
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);
+    for(i=0;i<instance_number(creavidas);i+=1){
+        with(instance_find(creavidas,i)){
+            if(area=-1){
+                x=0; y=0;}}}}
+if(ini_section_exists("objeto")){
+    i=0;
+    do{
+        if(ini_key_exists("objeto","x"+string(i))){
+            aux=instance_create(real(ini_read_string("objeto","x"+string(i),"0")),real(ini_read_string("objeto","y"+string(i),"0")),objeto);
+            aux.tipo=real(ini_read_string("objeto","t"+string(i),"1"));
+            aux.municion=real(ini_read_string("objeto","m"+string(i),"0"));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("viducha")){
+    i=0;
+    do{
+        if(ini_key_exists("viducha","x"+string(i))){
+            aux=instance_create(real(ini_read_string("viducha","x"+string(i),"0")),real(ini_read_string("viducha","y"+string(i),"0")),viducha);
+            aux.tipo=real(ini_read_string("viducha","t"+string(i),"0"));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("checkpoint")){
+    i=0;
+    do{
+        if(ini_key_exists("checkpoint","x"+string(i))){
+            instance_create(real(ini_read_string("checkpoint","x"+string(i),"0")),real(ini_read_string("checkpoint","y"+string(i),"0")),checkpoint);
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+ini_close();
+if(instance_number(creaenemigos)=0){
+    aux=instance_create(0,0,creaenemigos);
+    aux.area=-1; aux.arma=-1;}
+if(instance_number(creaguardianes)=0){
+    aux=instance_create(0,0,creaguardianes);
+    aux.area=-1; aux.arma=-1;}
+if(instance_number(creamuniciones)=0){
+    aux=instance_create(0,0,creamuniciones);
+    aux.area=-1; aux.arma=2;}
+if(instance_number(creavidas)=0){
+    aux=instance_create(0,0,creavidas);
+    aux.area=-1; aux.tipo=0;}
+ejecutabaldosas(argument0);

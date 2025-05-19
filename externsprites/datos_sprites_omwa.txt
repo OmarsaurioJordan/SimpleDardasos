@@ -1,0 +1,38 @@
+Dardasos:
+lista datos de sprites personalizables modalidad 2D
+-requieren transparencia
+-deben llevar los nombres citados abajo (.png)
+-preferible comprimirlos en .zip para importarlos con tecla F9
+(en caso de linux, depositarlos en carpeta "externos/" del juego)
+
+a continuacion datos utiles para rediseñar las imagenes:
+
+nombre. x num.imagenes (dimension cada imagen) (punto origen)
+
+paracaidas. x2 (150x157) (76,140)
+provisiones. x2 (150x169) (76,160)
+trapo. x4 (150x84) (76,160)
+personaje. x2 (99x122) (48,160)
+enemy. x6 (99x122) (48,160)
+guardian. x4 (99x122) (48,160)
+campesino. x4 (99x122) (48,160)
+cuerdas. x1 (99x122) (48,160)
+brazos. x5 (99x111) (48,149)
+salida. x15 (50x278) (48,316)
+municion. x7 (102x102) (51,122)
+armas. x8 (64x120) (11,2)
+patas. x5 (88x88) (42,72)
+nopatas. x1 (88x88) (42,72)
+proyectiles. x7 (94x102) (71,56)
+objetos. x10 (102x102) (48,89)
+casa. x5 (150x200) (74,171)
+muro. x3 (90x145) (43,126)
+natural. x3 (169x200) (83,176)
+navidad. x4 (169x200) (83,176)
+adorno. x4 (134x97) (65,76)
+fantasma. x6 (99x122) (48,160)
+patillas. x5 (88x88) (42,72)
+puerta. x3 (120x86) (59,50)
+
+
+Omar Jordan Jordan - Cali - Colombia - 2015

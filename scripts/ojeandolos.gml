@@ -1,0 +1,30 @@
+otrocoso=-1;
+blanco=-1;
+aux=0;
+if(argument1.object_index=ayudante){
+    aux=visualizacion*0.2;}
+xi=view_xview[0]+552;
+yi=view_yview[0]+432;
+if(instance_exists(argument0)){
+    n=0;
+    do{
+        do{
+            xx=xi-(visualizacion*0.8)+irandom(visualizacion*1.6);
+            yy=yi-(visualizacion*0.8)+irandom(visualizacion*1.6);}
+        until(point_distance(xi,yi,xx,yy)<visualizacion*0.8);
+        otrocoso=instance_nearest(xx,yy,argument0);
+        if(point_distance(xi,yi,otrocoso.x,otrocoso.y)<visualizacion*0.8+aux){
+            if(otrocoso!=argument2){
+                blanco=otrocoso;}}
+        n+=1;}
+    until(blanco>0 or n>20);
+    if(blanco>0){
+        argument1.blanco=blanco;
+        if(argument1.object_index=player){
+            blanco.enfocado=1;
+            if(instance_exists(argument2)){
+                argument2.enfocado=0;}}
+        else{
+            blanco.enfoque=1;
+            if(instance_exists(argument2)){
+                argument2.enfoque=0;}}}}

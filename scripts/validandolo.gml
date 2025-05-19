@@ -1,0 +1,283 @@
+if(argument0="map_omwa.ini"){
+    ini_open("map_omwa.ini");}
+else{
+    ini_open("omwam_"+argument0+".ini");}
+ancho=abs(round(real(ini_read_string("config","ancho","2016"))));
+ancho=round(ancho/48)*48;
+if(ancho>6624){ancho=6624;}
+else if(ancho<1104){ancho=1104;}
+ini_write_string("config","ancho",string(ancho));
+alto=abs(round(real(ini_read_string("config","alto","2016"))));
+alto=round(alto/48)*48;
+if(alto>5184){alto=5184;}
+else if(alto<864){alto=864;}
+ini_write_string("config","alto",string(alto));
+aux=real(ini_read_string("config","puertax","-150"));
+if(aux=-150){
+    ini_write_string("config","puertay","0");}
+else{
+    aux=abs(round(real(ini_read_string("config","puertax","0"))));
+    otrocoso=real(ini_read_string("config","ancho","2016"));
+    if(aux>otrocoso){
+        aux=otrocoso;}
+    ini_write_string("config","puertax",string(aux));
+    aux=abs(round(real(ini_read_string("config","puertay","0"))));
+    otrocoso=real(ini_read_string("config","alto","2016"));
+    if(aux>otrocoso){
+        aux=otrocoso;}
+    ini_write_string("config","puertay",string(aux));}
+aux=abs(round(real(ini_read_string("config","tiempo","0"))));
+aux=round(aux/30)*30;
+if(aux>600){aux=600;}
+ini_write_string("config","tiempo",string(aux));
+aux=abs(round(real(ini_read_string("config","cazados","0"))));
+aux=round(aux/3)*3;
+if(aux>33){aux=33;}
+ini_write_string("config","cazados",string(aux));
+aux=abs(round(real(ini_read_string("config","renovaenemigos","1"))));
+if(aux>4){aux=4;}
+ini_write_string("config","renovaenemigos",string(aux));
+aux=abs(round(real(ini_read_string("config","renovaguardianes","1"))));
+if(aux>4){aux=4;}
+ini_write_string("config","renovaguardianes",string(aux));
+aux=real(ini_read_string("config","densidadenemigos","0"));
+if(aux!=0 and aux!=1){
+    aux=0;}
+ini_write_string("config","densidadenemigos",string(aux));
+aux=real(ini_read_string("config","densidadguardianes","0"));
+if(aux!=0 and aux!=1){
+    aux=0;}
+ini_write_string("config","densidadguardias",string(aux));
+aux=abs(round(real(ini_read_string("config","relojenemigos","0"))));
+aux=round(aux/5)*5;
+if(aux>120){aux=120;}
+ini_write_string("config","relojenemigos",string(aux));
+aux=abs(round(real(ini_read_string("config","relojguardianes","0"))));
+aux=round(aux/5)*5;
+if(aux>120){aux=120;}
+ini_write_string("config","relojguardianes",string(aux));
+aux=abs(round(real(ini_read_string("config","rescatenemigos","0"))));
+if(aux>5){aux=5;}
+ini_write_string("config","rescatenemigos",string(aux));
+aux=abs(round(real(ini_read_string("config","rescateguardianes","0"))));
+if(aux>5){aux=5;}
+ini_write_string("config","rescateguardianes",string(aux));
+aux=abs(round(real(ini_read_string("config","relojmunicion","0"))));
+aux=round(aux/5)*5;
+if(aux>120){aux=120;}
+ini_write_string("config","relojmunicion",string(aux));
+aux=abs(round(real(ini_read_string("config","relojvidas","0"))));
+aux=round(aux/5)*5;
+if(aux>120){aux=120;}
+ini_write_string("config","relojvidas",string(aux));
+vidas=round(real(ini_read_string("config","vidas","1")));
+    if(vidas<-2){vidas=-2;}
+    else if(vidas>99){vidas=99;}
+    else if(vidas=0){vidas=-1;}
+ini_write_string("config","vidas",string(vidas));
+aux=round(real(ini_read_string("config","municionplayer","-1")));
+if(aux<-1 or aux>8){
+    aux=-1;}
+ini_write_string("config","municionplayer",string(aux));
+if(ini_section_exists("enemigo")){
+    i=0;
+    do{
+        if(ini_key_exists("enemigo","x"+string(i))){
+            aux=abs(round(real(ini_read_string("enemigo","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("enemigo","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("enemigo","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("enemigo","y"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("guardian")){
+    i=0;
+    do{
+        if(ini_key_exists("guardian","x"+string(i))){
+            aux=abs(round(real(ini_read_string("guardian","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("guardian","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("guardian","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("guardian","y"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("campesino")){
+    i=0;
+    do{
+        if(ini_key_exists("campesino","x"+string(i))){
+            aux=abs(round(real(ini_read_string("campesino","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("campesino","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("campesino","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("campesino","y"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("capturado")){
+    i=0;
+    do{
+        if(ini_key_exists("capturado","x"+string(i))){
+            aux=abs(round(real(ini_read_string("capturado","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("capturado","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("capturado","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("capturado","y"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("player")){
+    aux=abs(round(real(ini_read_string("player","x","0"))));
+    if(aux>ancho){aux=ancho;}
+    ini_write_string("player","x",string(aux));
+    aux=abs(round(real(ini_read_string("player","y","0"))));
+    if(aux>alto){aux=alto;}
+    ini_write_string("player","y",string(aux));}
+if(ini_section_exists("creaenemigos")){
+    i=0;
+    do{
+        if(ini_key_exists("creaenemigos","x"+string(i))){
+            aux=abs(round(real(ini_read_string("creaenemigos","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("creaenemigos","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("creaenemigos","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("creaenemigos","y"+string(i),string(aux));
+            aux=round(real(ini_read_string("creaenemigos","a"+string(i),"1")));
+            if(aux>1 or aux<-1){
+                aux=1;}
+            ini_write_string("creaenemigos","a"+string(i),string(aux));
+            aux=round(real(ini_read_string("creaenemigos","t"+string(i),"0")));
+            if(aux<-1 or aux>8){
+                aux=0;}
+            ini_write_string("creaenemigos","t"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("creaguardianes")){
+    i=0;
+    do{
+        if(ini_key_exists("creaguardianes","x"+string(i))){
+            aux=abs(round(real(ini_read_string("creaguardianes","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("creaguardianes","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("creaguardianes","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("creaguardianes","y"+string(i),string(aux));
+            aux=round(real(ini_read_string("creaguardianes","a"+string(i),"1")));
+            if(aux>1 or aux<-1){
+                aux=1;}
+            ini_write_string("creaguardianes","a"+string(i),string(aux));
+            aux=round(real(ini_read_string("creaguardianes","t"+string(i),"0")));
+            if(aux<-1 or aux>8){
+                aux=0;}
+            ini_write_string("creaguardianes","t"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("creamuniciones")){
+    i=0;
+    do{
+        if(ini_key_exists("creamuniciones","x"+string(i))){
+            aux=abs(round(real(ini_read_string("creamuniciones","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("creamuniciones","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("creamuniciones","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("creamuniciones","y"+string(i),string(aux));
+            aux=round(real(ini_read_string("creamuniciones","a"+string(i),"1")));
+            if(aux>1 or aux<-1){
+                aux=1;}
+            ini_write_string("creamuniciones","a"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("creamuniciones","t"+string(i),"0"))));
+            if(aux>8){
+                aux=0;}
+            ini_write_string("creamuniciones","t"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("creavidas")){
+    i=0;
+    do{
+        if(ini_key_exists("creavidas","x"+string(i))){
+            aux=abs(round(real(ini_read_string("creavidas","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("creavidas","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("creavidas","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("creavidas","y"+string(i),string(aux));
+            aux=round(real(ini_read_string("creavidas","a"+string(i),"1")));
+            if(aux>1 or aux<-1){
+                aux=1;}
+            ini_write_string("creavidas","a"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("creavidas","t"+string(i),"0"))));
+            if(aux>3){
+                aux=0;}
+            ini_write_string("creavidas","t"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("objeto")){
+    i=0;
+    do{
+        if(ini_key_exists("objeto","x"+string(i))){
+            aux=abs(round(real(ini_read_string("objeto","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("objeto","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("objeto","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("objeto","y"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("objeto","t"+string(i),"1"))));
+            if(aux>6){
+                aux=1;}
+            otrocoso=abs(round(real(ini_read_string("objeto","m"+string(i),"0"))));
+            if(otrocoso>99){
+                otrocoso=99;}
+            if(otrocoso=0 and aux>0){
+                switch(aux){
+                    case 1: otrocoso=mu1; break;
+                    case 2: otrocoso=mu2; break;
+                    case 3: otrocoso=mu3; break;
+                    case 4: otrocoso=mu4; break;
+                    case 5: otrocoso=mu5; break;
+                    case 6: otrocoso=mu6; break;}}
+            if(aux=0){
+                otrocoso=0;}
+            ini_write_string("objeto","m"+string(i),string(otrocoso));
+            ini_write_string("objeto","t"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+if(ini_section_exists("viducha")){
+    i=0;
+    do{
+        if(ini_key_exists("viducha","x"+string(i))){
+            aux=abs(round(real(ini_read_string("viducha","x"+string(i),"0"))));
+            if(aux>ancho){aux=ancho;}
+            ini_write_string("viducha","x"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("viducha","y"+string(i),"0"))));
+            if(aux>alto){aux=alto;}
+            ini_write_string("viducha","y"+string(i),string(aux));
+            aux=abs(round(real(ini_read_string("viducha","t"+string(i),"0"))));
+            if(aux>1){
+                aux=0;}
+            ini_write_string("viducha","t"+string(i),string(aux));
+            i+=1;}
+        else{
+            i=-1;}}
+    until(i=-1);}
+ini_close();

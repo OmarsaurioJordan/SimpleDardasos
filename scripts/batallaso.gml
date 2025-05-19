@@ -1,0 +1,9 @@
+with(condicionador){
+if(num_muertos>=tiempo){
+    tiempo=0;
+    renovaenemigos=0;
+    renovaguardianes=0;
+    reloj1=-1;
+    reloj2=-1;
+    huidaguardianes=0;
+    huidaenemigos=0;}}

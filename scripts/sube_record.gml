@@ -1,0 +1,40 @@
+//nombre, puntaje
+var nn, ordenador, cadena1, cadena2;
+nn=0;
+for(i=0;i<10;i+=1){
+    if(argument0=control.campeones[i]){
+        if(argument1>real(control.trofeos[i])){
+            control.trofeos[i]=string(argument1);
+            nn=1;}
+        else{
+            nn=-1;
+            control.servidor=0;
+            control.escribe=0;}
+        break;}}
+if(nn=0){
+    control.trofeos[9]=string(argument1);
+    control.campeones[9]=argument0;}
+if(nn!=-1){
+    ordenador=ds_priority_create();
+    for(i=0;i<10;i+=1){
+        ds_priority_add(ordenador,control.campeones[i],real(control.trofeos[i]));}
+    nn=0;
+    do{
+        control.campeones[nn]=ds_priority_find_max(ordenador);
+        control.trofeos[nn]=string(ds_priority_find_priority(ordenador,control.campeones[nn]));
+        ds_priority_delete_max(ordenador);
+        nn+=1;}
+    until(ds_priority_size(ordenador)=0);
+    ds_priority_destroy(ordenador);
+    cadena1="";
+    for(i=0;i<10;i+=1){
+        cadena1+=control.campeones[i]+"|";}
+    cadena1=string_copy(cadena1,1,string_length(cadena1)-1);
+    cadena2="";
+    for(i=0;i<10;i+=1){
+        cadena2+=control.trofeos[i]+"|";}
+    cadena2=string_copy(cadena2,1,string_length(cadena2)-1);
+    control.leeserver3=http_get("http://ojorcio.000webhostapp.com/mysql_omarsauriogames.php?ff=sp&game=dardasos&version="+control.version+"&jugadores="+cadena1+"&puntajes="+cadena2+"&descargas=?&ac=?");
+    ini_open("config_omwa.ini");
+    ini_write_string("config","micampeon",argument0);
+    ini_close();}
